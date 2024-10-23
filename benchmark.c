@@ -69,6 +69,16 @@ int main(){
   printf("Time complexity O(n + k)\n");
   printf("Valid Sort: %s\n\n", check_sort(sorted, len) ? "true" : "false");
 
+  printf("Radix Sort not yet implemented\n\n");
+/*
+  get_array(unsorted, len, range);
+  start_time = clock();
+  int *sorted = radix_sort(unsorted, len);
+  double radix_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+  printf("Radix Sort Benchmark: Done in %f seconds\n", radix_time);
+  printf("Time complexity O(nd)\n");
+  printf("Valid Sort: %s\n\n", check_sort(sorted, len) ? "true" : "false");
+*/
   free(sorted);
   return 0;
 }
