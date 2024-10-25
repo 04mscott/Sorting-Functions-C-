@@ -88,12 +88,14 @@ void heapify(int arr[], int len, int parent){
   // Calls heapify on the parent node to check any effected sub trees
   if(max_node != parent){
     swap(&arr[parent], &arr[max_node]);
+    //print_arr("Step: ", arr, len);
     heapify(arr, len, max_node);
   }
 }
 
 // Builds a max heap from a list by placing them in correct order
 void build_max_heap(int arr[], int len){
+  //print_arr("Step: ", arr, len);
   // Find index of last non-leaf node
   int last_node = (len / 2) - 1;
   // Loop backwards over list, working from the bottom up of the heap
@@ -128,6 +130,7 @@ void merge(int arr[], int start, int mid, int end) {
       r++;
     }
     c++;
+    //print_arr("Step: ", arr, len);
   }
   // Copy Any remaining elements
   while(l < l_len){
@@ -145,7 +148,7 @@ void merge(int arr[], int start, int mid, int end) {
 // Partitions a list using the last element as the pivot
 // Places all elements < pivot to the left, all elements > pivot to the right
 // Returns new index of the pivot
-int partition(int arr[], int left, int right) {
+int partition(int arr[],  int left, int right) {
   // Select the rightmost element as pivot
   int pivot = arr[right];
   int next = left - 1;
@@ -155,10 +158,12 @@ int partition(int arr[], int left, int right) {
       // Swap smaller element with the element in the next position
       next++;
       swap(&arr[next], &arr[i]);
+      //print_arr("Step: ", arr, len);
     }
   }
   // swap the pivot element with the greater element at i
   swap(&arr[next + 1], &arr[right]);
+  //print_arr("Step: ", arr, len);
   return next + 1;
 }
 
@@ -171,6 +176,7 @@ void bubble_sort(int arr[], int len){
       // Compares elements, swapping if necessary
       if(arr[j] > arr[j + 1]){
         swap(&arr[j], &arr[j + 1]);
+        //print_arr("Step: ", arr, len);
       }
     }
   }
@@ -182,6 +188,7 @@ void selection_sort(int arr[], int len){
   for(int i = 0; i < len - 1; i++){
     int min_idx = min(arr, i, len);
     swap(&arr[i], &arr[min_idx]);
+    //print_arr("Step: ", arr, len);
   }
 }
 
@@ -192,6 +199,7 @@ void insertion_sort(int arr[], int len){
     // into sorted position with each growth
     while(j > 0 && arr[j] < arr[j - 1]){
       swap(&arr[j], &arr[j - 1]);
+      //print_arr("Step: ", arr, len);
       j--;
     }
   }
@@ -204,6 +212,7 @@ void heap_sort(int arr[], int len){
     // Swaps root with last index, sorting it
     // After swapping, converts back into max heap without the sorted element(s)
     swap(&arr[0], &arr[i]);
+    //print_arr("Step: ", arr, len);
     heapify(arr, i, 0);
   }
 }
@@ -216,6 +225,7 @@ void merge_sort(int arr[], int start, int end) {
     merge_sort(arr, mid + 1, end);
     // Merges smaller arrays back together
     merge(arr, start, mid, end);
+    //print_arr("Step: ", arr, len);
   }
 }
 
@@ -229,51 +239,67 @@ void quick_sort(int arr[], int left, int right){
   }
 }
 
-int *radix_sort(int arr[], int len){
-  return arr;
+void count_sort(int arr[], int len, int place) {
+  int output[len];
+  int k;
+  if(place == 0){
+    k = arr[max(arr, 0, len)] + 1;
+  } else{
+    k = 10;
+  }
+  int *count = calloc(k, sizeof(int));
+  // Calculate count of elements
+  int index;
+  for (int i = 0; i < len; i++) {
+    if(place == 0){
+      index = arr[i];
+    } else{
+      index = (arr[i] / place) % 10;
+    }
+    count[index]++;
+    //print_arr("Step: ", count, k);
+  }
+  // Calculate cumulative count
+  for (int i = 1; i < k; i++) {
+    count[i] += count[i - 1];
+  }
+  // Place the elements in sorted order
+  for (int i = len - 1; i >= 0; i--) {
+    if(place == 0){
+      index = arr[i];
+    } else{
+      index = (arr[i] / place) % 10;
+    }
+    output[count[index] - 1] = arr[i];
+    count[index]--;
+  }
+  // Copy the sorted elements into original array
+  for (int i = 0; i < len; i++) {
+    arr[i] = output[i];
+    //print_arr("Step: ", arr, len);
+  }
+  free(count);
 }
 
-int *count_sort(int arr[], int len){
-  // Create helper array of length k + 1
-  // Where k = max(arr)
-  int k = arr[max(arr, 0, len)];
-  int *counts = calloc(sizeof(int), k + 1);
-
-  // Output array
-  int *output = malloc(sizeof(int) * len);
-
-  // Loop thru array, storing count of each unique element,
-  // using the element as the index
-  for(int i = 0; i < len; i++){
-    counts[arr[i]] += 1;
+void radix_sort(int arr[], int len){
+  // Find max element in the array
+  int m = arr[max(arr, 0, len)];
+  // Call count_sort once for each digit, passing the exponent as a power of ten
+  for(int place = 1; m / place > 0; place *= 10){
+    count_sort(arr, len, place);
+    //print_arr("Step: ", arr, len);
   }
-
-  // Loop thru helper array, adding the previous
-  // element to each element
-  for(int i = 1; i < k + 1; i++){
-    counts[i] += counts[i - 1];
-  }
-
-  // Loop thru array backwards to ensure
-  // stable algorithm
-  // Uses helper list to determine index
-  for(int i = len - 1; i >= 0; i--){
-    output[counts[arr[i]] - 1] = arr[i];
-    counts[arr[i]]--;
-  }
-
-  // Free helper array
-  free(counts);
-  return output;
 }
 /*
 int main(){
-  int arr[10];
-  int len = sizeof(arr) / sizeof(arr[0]);
-  get_array(arr, len, 50);
-  print_arr("Original: ", arr, len);
-  quick_sort(arr, 0, len - 1);
-  print_arr("Sorted: ", arr, len);
+  int len = 15;
+  int range = 10;
+  int arr[len];
+  get_array(arr, len, range);
+  count_sort(arr, 0, len);
+  print_arr("", arr, len);
+  get_array(arr, len, range);
+  radix_sort(arr, len);
   return 0;
 }
 */
