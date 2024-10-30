@@ -1,12 +1,17 @@
-import ctypes
 import numpy as np
-import subprocess
-import sys
-from io import StringIO
+import matplotlib.pyplot as plt
 
-sort = ctypes.CDLL("/Users/masonscott/C Projects/Sorting-Functions-C-/sort_funcs.so")
+num = 15
 
-py_values = [4, 2, 7, 1, 9, 3]
-arr = (ctypes.c_int * len(py_values))(*py_values)
-sort.bubble_sort(arr, len(arr))
-print(arr)
+lst = np.random.randint(0, 100, num)
+x = np.arange(0, num, 1)
+
+n = len(lst)
+for i in range(n):
+  for j in range(0, n - i - 1):
+    plt.bar(x, lst)
+    plt.pause(0.01)
+    plt.clf()
+    if lst[j] > lst[j + 1]:
+      lst[j], lst[j + 1] = lst[j + 1], lst[j]
+plt.show()

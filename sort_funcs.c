@@ -290,16 +290,3 @@ void radix_sort(int arr[], int len){
     //print_arr("Step: ", arr, len);
   }
 }
-/*
-int main(){
-  int len = 15;
-  int range = 10;
-  int arr[len];
-  get_array(arr, len, range);
-  count_sort(arr, 0, len);
-  print_arr("", arr, len);
-  get_array(arr, len, range);
-  radix_sort(arr, len);
-  return 0;
-}
-*/
