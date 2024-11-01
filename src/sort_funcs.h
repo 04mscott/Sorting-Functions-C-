@@ -4,6 +4,9 @@
 #include <limits.h>
 #include <time.h>
 
+// Benchmark
+double benchmark(int sort, int num_elements, int range);
+
 // Helper Functions
 void print_arr(char string[], int arr[], int len);
 void get_array(int *arr, int len, int range);
