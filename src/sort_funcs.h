@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <limits.h>
+#include <time.h>
 
 // Helper Functions
 void print_arr(char string[], int arr[], int len);

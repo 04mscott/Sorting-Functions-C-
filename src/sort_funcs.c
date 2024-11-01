@@ -1,6 +1,48 @@
 #include "sort_funcs.h"
 #include "time.h"
 
+// Benchmark Function
+double benchmark(int sort, int num_elements, int range){
+  clock_t start_time;
+  int arr[num_elements];
+  get_array(arr, num_elements, range);
+
+  get_array(arr, num_elements, range);
+  start_time = clock();
+  switch(sort){
+    case 0:
+      bubble_sort(arr, num_elements);
+      break;
+    case 1:
+      selection_sort(arr, num_elements);
+      break;
+    case 2:
+      insertion_sort(arr, num_elements);
+      break;
+    case 3:
+      heap_sort(arr, num_elements);
+      break;
+    case 4:
+      merge_sort(arr, 0, num_elements);
+      break;
+    case 5:
+      quick_sort(arr, 0, num_elements);
+      break;
+    case 6:
+      count_sort(arr, num_elements, 0);
+      break;
+    case 7:
+      radix_sort(arr, num_elements);
+      break;
+  }
+  double time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+  bool sorted = check_sort(arr, num_elements);
+  if(!sorted){
+    return -1;
+  }
+  return time;
+}
+
 // General Helper Functions
 /*----------------------------------------------*/
 // Prints all elements of an array in addition to an input string
@@ -88,14 +130,12 @@ void heapify(int arr[], int len, int parent){
   // Calls heapify on the parent node to check any effected sub trees
   if(max_node != parent){
     swap(&arr[parent], &arr[max_node]);
-    //print_arr("Step: ", arr, len);
     heapify(arr, len, max_node);
   }
 }
 
 // Builds a max heap from a list by placing them in correct order
 void build_max_heap(int arr[], int len){
-  //print_arr("Step: ", arr, len);
   // Find index of last non-leaf node
   int last_node = (len / 2) - 1;
   // Loop backwards over list, working from the bottom up of the heap
@@ -130,7 +170,6 @@ void merge(int arr[], int start, int mid, int end) {
       r++;
     }
     c++;
-    //print_arr("Step: ", arr, len);
   }
   // Copy Any remaining elements
   while(l < l_len){
@@ -158,12 +197,10 @@ int partition(int arr[],  int left, int right) {
       // Swap smaller element with the element in the next position
       next++;
       swap(&arr[next], &arr[i]);
-      //print_arr("Step: ", arr, len);
     }
   }
   // swap the pivot element with the greater element at i
   swap(&arr[next + 1], &arr[right]);
-  //print_arr("Step: ", arr, len);
   return next + 1;
 }
 
@@ -176,7 +213,6 @@ void bubble_sort(int arr[], int len){
       // Compares elements, swapping if necessary
       if(arr[j] > arr[j + 1]){
         swap(&arr[j], &arr[j + 1]);
-        //print_arr("Step: ", arr, len);
       }
     }
   }
@@ -188,7 +224,6 @@ void selection_sort(int arr[], int len){
   for(int i = 0; i < len - 1; i++){
     int min_idx = min(arr, i, len);
     swap(&arr[i], &arr[min_idx]);
-    //print_arr("Step: ", arr, len);
   }
 }
 
@@ -199,7 +234,6 @@ void insertion_sort(int arr[], int len){
     // into sorted position with each growth
     while(j > 0 && arr[j] < arr[j - 1]){
       swap(&arr[j], &arr[j - 1]);
-      //print_arr("Step: ", arr, len);
       j--;
     }
   }
@@ -212,7 +246,6 @@ void heap_sort(int arr[], int len){
     // Swaps root with last index, sorting it
     // After swapping, converts back into max heap without the sorted element(s)
     swap(&arr[0], &arr[i]);
-    //print_arr("Step: ", arr, len);
     heapify(arr, i, 0);
   }
 }
@@ -257,7 +290,6 @@ void count_sort(int arr[], int len, int place) {
       index = (arr[i] / place) % 10;
     }
     count[index]++;
-    //print_arr("Step: ", count, k);
   }
   // Calculate cumulative count
   for (int i = 1; i < k; i++) {
@@ -276,7 +308,6 @@ void count_sort(int arr[], int len, int place) {
   // Copy the sorted elements into original array
   for (int i = 0; i < len; i++) {
     arr[i] = output[i];
-    //print_arr("Step: ", arr, len);
   }
   free(count);
 }
@@ -287,6 +318,5 @@ void radix_sort(int arr[], int len){
   // Call count_sort once for each digit, passing the exponent as a power of ten
   for(int place = 1; m / place > 0; place *= 10){
     count_sort(arr, len, place);
-    //print_arr("Step: ", arr, len);
   }
 }
