@@ -2,6 +2,7 @@
 #include "time.h"
 
 // Benchmark Function
+/*----------------------------------------------*/
 double benchmark(int sort, int num_elements, int range){
   clock_t start_time;
   int arr[num_elements];
