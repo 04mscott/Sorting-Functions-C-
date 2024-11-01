@@ -101,7 +101,10 @@ selection_sort(arr, 5);
 
 Heap sort is not stable, but is in place. It converts the list into a max-heap, meaning the root node is the largest element in the sub-tree, going all the way down to the leaf nodes. 
 This done using the `build_max_heap` and `heapify` helper functions. `build_max_heap`reorders the elements in the list such that each row appears in order from left to right in the array. 
-
+```c
+int arr[] = {4, 1, 2, 5, 3};
+heap_sort(arr, 5);
+```
 For example, the array `[4, 1, 2, 5, 3]` would be converted to the max-heap `[5, 4, 2, 1, 3]`, which would look like this: ![maxheap1](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/maxheap1.png)
 Next, the root node is swapped with the last element of the list, or the rightmost node. So the heap will become `[4, 2, 1, 3, 5]` or ![maxheap2](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/maxheap2.png)
 
