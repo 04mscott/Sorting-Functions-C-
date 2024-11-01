@@ -116,6 +116,23 @@ Once the list is sorted, heap sort has a best case time complexity of O(n) and w
 
 ## Part V - Merge Sort
 ![merge sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Merge.png)
+
+Merge sort is stable, but is not in place, as it creates additional lists to store the elements as they are being sorted. Merge sort splits the list in half recursively until it reaches a list of size 1, returning the list. These lists are then merged together in sorted order using the `merge` helper function. `merge_sort` takes in an arr, a start index, which should always be 0 when calling the function, and an end index, which should always be the length of the array when calling the function. A call to merge sort looks like the following:
+```c
+int arr[] = {4, 1, 2, 5, 3};
+merge_sort(arr, 0, 5);
+```
+The array would be split into the following sub lists using recursion:
+```c
+  [4, 1, 2, 5, 3]
+   /           \
+[4, 1]      [2, 5, 3]
+  /  \       /     \
+[4]  [1]  [2]    [5, 3]
+          /     /     \
+         [2]  [5]     [3]
+```
+
 ## Part VI - Quick Sort
 ![quick sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Quick.png)
 ## Part VII - Count Sort
