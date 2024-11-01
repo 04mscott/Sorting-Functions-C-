@@ -4,9 +4,11 @@
 
 ## Overview
 
+![All sort funcs bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/All%20(10).png)
+
 In this project, I implemented 8 common sorting algorithms in C. Each algorithm takes in a list of integers, along with an end position (in most cases this means the length of the list), and, in some cases, a starting position.
 
-There is an additional function writtin in C that is used to benchmark each of the algorithms and compare them:
+The above graph shows the time taken for each sorting algorithm to sort a list of 2^n random integers, where 0 <= n <= 10. The following documentation will go into further detail visualizing and comparing each algorithm for larger data sets. The graph was created using the Python plotting libraries and the benchmark function writtin in C below:
 ```c
 // Output is the time elapseed between function call and end of sort function
 int benchmark(int sort, int num_elements, int range);
@@ -16,7 +18,11 @@ The input variables are:
 - `int num_elements` An int representing the desired number of elements in the list to run the benchmark on
 - `int range` An int representing the range of numbers to be sorted. For example 100 would be numbers \[0-99]
 
-The benchmark function is used in the Python code later in the documentation to visualize and compare the performence of each algorithm.
+An important note about benchmark: Each time the function is called it uses a new list of random ints within the submitted range. The function is used in the Python code later in the documentation to visualize and compare the performence of each algorithm.
+
+## C Code
+
+---
 
 ## Miscellaneous Helper Functions
 
@@ -45,7 +51,9 @@ bool check_sort(int arr[], int len);
 ```
 ## Part I - Bubble Sort
 
-The first algorithm is Bubble Sort. Bubble sort is a stable, in place, and comparative sorting algorithm. Bubble sort is the most straightforward algorithm, and likely one that most programmers discover on their own. It is made up of a set of nested loops. The outer loop loops over each element in the list, with the inner loop comparing each subsequent element to the element selected by the outer loop. This means that Bubble sort is O(n^2). The code for my implementation of Bubble sort is below.
+![bubble sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Bubble.png)
+
+Bubble sort is stable, meaning if two elements are of equal value, the one that originally appears earlier in the unsorted list willl also appear earlier in the sorted list, and in place, meaning it moves the elements around within the input list rather than creating new lists to store them. Bubble sort is the most straightforward algorithm, and likely one that most programmers discover on their own. It is implemented using nested loops and the `swap` helper function. The outer loop loops over each element in the list, with the inner loop comparing each subsequent element to the element selected by the outer loop. This means that Bubble sort is O(n^2) in all cases. The code for my implementation of Bubble sort is below.
 ```c
 void bubble_sort(int arr[], int len){
   // Loops over list n^2 times
@@ -72,25 +80,42 @@ Result:
 The remaining documentation will not contain the full source code for the sorting algorithms, although it can be found in the projects GitHub repository [here](https://github.com/04mscott/Sorting-Functions-C-)
 
 ## Part II - Selection Sort
+![selection sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Select.png)
 
-The next algorithm, Selection Sort, is also in place, although it is not stable. Selection sort focuses on one element at a time, comparing it to the previously sorted elements in the list. As the function progresses, a sorted sublist forms at the beginning of the list, although it is only sorted relative to itself, the values are not in the correct sorted order pertaining to the overall list.
+Selection sort is not stable, but is in place. It 'selects' the smallest element of the unsorted sub list and swaps it with the first element of said sublist. This is implemented using a loop, the `min` and `swap` helper functions, swapping the minimum element and the first element in the unsorted sublist. This results in a O(n^2) time complexity in all cases, similar to Bubble Sort. Selection sort takes in two parameters, the list to be sorted and the size of said list. An example call is below:
 ```c
 int arr[] = {4, 1, 2, 5, 3};
 selection_sort(arr, 5);
 ```
-```c
-// Steps of selection sort
-i.   4, 1, 2, 5, 3
-ii.  1, 4, 2, 5, 3
-iii. 1, 2, 4, 5, 3
-iv.  1, 2, 4, 5, 3
-v.   1, 2, 3, 4, 5
-```
-## Part III - Insertion Sort
-## Part IV - Heap Sort
-## Part V - Merge Sort
-## Part VI - Quick Sort
-## Part VII - Count Sort
-## Part VIII - Radix Sort
 
+## Part III - Insertion Sort
+![insertion sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Insert.png)
+
+Insertion Sort is stable and is in place. It focuses on one element at a time, comparing it to the previously sorted elements in the list. As the function progresses, a sorted sublist forms at the beginning of the list, although, it is only sorted relative to itself, the values may not be in the correct sorted order pertaining to the overall list. Insertion sort is implemented using a set of nested loops and the `swap` helper function. The first loop loops over each element in the list, with the inner loop increasing the size of the sorted sublist, swapping the minimum element in the unsorted list with the first element in said list.
+```c
+int arr[] = {4, 1, 2, 5, 3};
+selection_sort(arr, 5);
+```
+## Part IV - Heap Sort
+![heap sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Heap.png)
+
+Heap sort is not stable, but is in place. It converts the list into a max-heap, meaning the root node is the largest element in the sub-tree, going all the way down to the leaf nodes. This is done in place by reordering the elements in the list such that each row appears in order from left to right in the array. For example, the array `[4, 1, 2, 5, 3]` would be converted to the max-heap `[5, 4, 2, 1, 3]`, which would look like this:
+
+## Part V - Merge Sort
+![merge sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Merge.png)
+## Part VI - Quick Sort
+![quick sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Quick.png)
+## Part VII - Count Sort
+![count sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Count.png)
+## Part VIII - Radix Sort
+![radix sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Radix.png)
+
+## Python Code
+
+---
+
+
+## Visualizations
+
+---
 [Return to Home](https://04mscott.github.io/)
