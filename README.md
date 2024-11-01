@@ -99,10 +99,17 @@ selection_sort(arr, 5);
 ## Part IV - Heap Sort
 ![heap sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Heap.png)
 
-Heap sort is not stable, but is in place. It converts the list into a max-heap, meaning the root node is the largest element in the sub-tree, going all the way down to the leaf nodes. This is done in place by reordering the elements in the list such that each row appears in order from left to right in the array. 
+Heap sort is not stable, but is in place. It converts the list into a max-heap, meaning the root node is the largest element in the sub-tree, going all the way down to the leaf nodes. 
+This done using the `build_max_heap` and `heapify` helper functions. `build_max_heap`reorders the elements in the list such that each row appears in order from left to right in the array. 
 
-For example, the array `[4, 1, 2, 5, 3]` would be converted to the max-heap `[5, 4, 2, 1, 3]`, which would look like this: ![maxheap](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Screenshot%202024-11-01%20at%205.34.00%E2%80%AFAM.png)
-Next, the root node is swapped with the last element of the list, or the rightmost node. So the heap will become `[4, 2, 1, 3, 5]` or 
+For example, the array `[4, 1, 2, 5, 3]` would be converted to the max-heap `[5, 4, 2, 1, 3]`, which would look like this: ![maxheap](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/maxheap1.png)
+Next, the root node is swapped with the last element of the list, or the rightmost node. So the heap will become `[4, 2, 1, 3, 5]` or ![maxheap2]()
+
+The 5 is now considered sorted and removed from the max-heap. This remaining sub list is converted back into a max-heap using the `heapify` helper function. In this case, there is no work for `heapify` to do, and the heap becomes `[4, 2, 1, 3]` or ![maxheap3]()
+
+Following this, the process repeats until the list is sorted. The root node is swapped with the last element in the unsorted sub list, becoming `[3, 2, 1, 4, 5]`, and then removed from the heap. After conversion back to a max heap it will become `[3, 2, 1]` or ![maxheap4]()
+
+Once the list is sorted, 
 
 ## Part V - Merge Sort
 ![merge sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Merge.png)
