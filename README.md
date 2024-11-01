@@ -99,7 +99,10 @@ selection_sort(arr, 5);
 ## Part IV - Heap Sort
 ![heap sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Heap.png)
 
-Heap sort is not stable, but is in place. It converts the list into a max-heap, meaning the root node is the largest element in the sub-tree, going all the way down to the leaf nodes. This is done in place by reordering the elements in the list such that each row appears in order from left to right in the array. For example, the array `[4, 1, 2, 5, 3]` would be converted to the max-heap `[5, 4, 2, 1, 3]`, which would look like this: ![maxheap](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Screenshot%202024-11-01%20at%205.34.00%E2%80%AFAM.png)
+Heap sort is not stable, but is in place. It converts the list into a max-heap, meaning the root node is the largest element in the sub-tree, going all the way down to the leaf nodes. This is done in place by reordering the elements in the list such that each row appears in order from left to right in the array. 
+
+For example, the array `[4, 1, 2, 5, 3]` would be converted to the max-heap `[5, 4, 2, 1, 3]`, which would look like this: ![maxheap](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Screenshot%202024-11-01%20at%205.34.00%E2%80%AFAM.png)
+Next, the root node is swapped with the last element of the list, or the rightmost node. So the heap will become `[4, 2, 1, 3, 5]` or 
 
 ## Part V - Merge Sort
 ![merge sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Merge.png)
