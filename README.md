@@ -20,7 +20,7 @@ The input variables are:
 
 An important note about benchmark: Each time the function is called it uses a new list of random ints within the submitted range. The function is used in the Python code later in the documentation to visualize and compare the performence of each algorithm.
 
-## C Code
+# Sorting Algorithms
 
 ---
 
@@ -135,8 +135,16 @@ The array would be split into the following sub lists using recursion:
 
 ## Part VI - Quick Sort
 ![quick sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Quick.png)
+
+Quick sort not stable but it is in place. It sorts the data by selecting a pivot, typically the last element in the list, and then compares each element to said pivot. It then places all elements smaller than the pivot in the beginning of the list, followed by the pivot, which is followed by the remaining elements larger than the pivot. This happens recursively, after the list is sorted in terms of the pivot, each sublist on either side of the pivot is sorted in terms of a new pivot. This recurses until the entire list is sorted, resulting in a time complexity of O(n log n) in most cases and O(n^2) in the worst case.
+
+
 ## Part VII - Count Sort
 ![count sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Count.png)
+
+Count sort is stable but is not in place. This algorithm is different from the previous 6, as it is not a comparative algorithm.
+
+
 ## Part VIII - Radix Sort
 ![radix sort bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/Radix.png)
 
