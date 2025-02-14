@@ -5,7 +5,8 @@ import pandas as pd
 import seaborn as sns
 
 # Assign file
-sort_funcs = ctypes.CDLL('/Users/masonscott/C Projects/Sorting-Functions-C-/src/sort_funcs.so')
+base_dir = os.path.dirname(__file__)
+sort_funcs = ctypes.CDLL(os.path.join(base_dir, 'sort_funcs.so'))
 # Assign Benchmark funciton
 benchmark = sort_funcs.benchmark
 # Assign Result types
