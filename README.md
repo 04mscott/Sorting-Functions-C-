@@ -1,5 +1,3 @@
-[Return to Home](https://04mscott.github.io/)
-
 # C Sorting Algorithms With Python Visualizations
 
 ![All sort funcs bm](https://raw.githubusercontent.com/04mscott/Sorting-Functions-C-/refs/heads/main/assets/img/All%20(10).png)
@@ -29,6 +27,3 @@ A Python script leverages the shared library ```(sort_funcs.so)``` generated fro
 + Benchmarking Framework: A clock-based benchmarking function in C measures and verifies the performance of each algorithm.
 + Python-C Interfacing: ```ctypes``` enables seamless integration of the C backend with Python's visualization ecosystem.
 + Scalability Testing: The project tests algorithms on datasets ranging from a few elements to millions, providing insights into their theoretical time complexities in practice.
-
----
-[Return to Home](https://04mscott.github.io/)
